@@ -1,0 +1,175 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 서울대학교 데이터마이닝연구실 구성원들의 박사학위논문 작성을 위해 아래 저작자의 자료를 일부 수정하였습니다.
+%% Author: zeta709 (zeta709@gmail.com) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\RequirePackage{fix-cm} 
+% oneside : 단면 인쇄용
+% twoside : 양면 인쇄용
+% phd : 박사
+% openright : 챕터가 홀수쪽에서 시작
+\documentclass[oneside,phd]{snuthesis_utf8}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 목차 양식을 변경하는 코드
+%% subfigure (subfig) package 사용 여부에 따라
+%% tocloft의 옵션을 다르게 지정해야 한다.
+%\usepackage[titles,subfigure]{tocloft} % when you use subfigure package
+\usepackage[titles]{tocloft} % when you don't use subfigure package
+\makeatletter % don't delete me
+\renewcommand\cftchappresnum{Chapter~}
+\renewcommand\cftfigpresnum{Figure~}
+\renewcommand\cfttabpresnum{Table~}
+
+
+\usepackage[pdftex,bookmarks=true]{hyperref}
+
+\makeatother % don't delete me
+\newlength{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mytmplen}
+%% 목차 양식을 변경하는 코드 끝
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 다른 패키지 로드
+%% http://faq.ktug.or.kr/faq/pdflatex%B0%FAlatex%B5%BF%BD%C3%BB%E7%BF%EB
+%% 필요에 따라 직접 수정 필요
+\ifpdf
+	% \input glyphtounicode\pdfgentounicode=1 %type 1 font사용시
+	%\usepackage[pdftex,unicode]{hyperref} % delete me
+	%\usepackage[pdftex]{graphicx}
+	%\usepackage[pdftex,svgnames]{xcolor}
+\else
+	%\usepackage[dvipdfmx,unicode]{hyperref} % delete me%
+	%\usepackage[dvipdfmx]{graphicx}
+	%\usepackage[dvipdfmx,svgnames]{xcolor}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% \title : 22pt로 나오는 큰 제목
+%% \title* : 16pt로 나오는 작은 제목
+\title{Dissertation Title Dissertation Title \\abcdefghijk}
+\title*{박사학위논문 한글제목}
+
+\titlen{Dissertation Title Dissertation Title abcdefghijk}
+
+\author{Gildong~Hong}
+\author*{홍길동} % Same as \author.
+\authorn{홍~길~동}
+\phonenumber{010-0000-0000}
+\studentnumber{2000-00000}
+\advisor{Nada~Ga}
+\advisor*{가나다}
+\advisorn{가~나~다}
+\graddate{2015~년~~8~월}
+\submissiondate{2015~년~~6~월}
+\submissiondaten{2015~년~~8~월~~10~일}
+\approvaldate{2015~년~~6~월}
+
+\committeemembers%
+{교 수 님}%
+{교 수 님}%
+{교 수 님}%
+{교 수 님}%
+{교 수 님} %
+
+%% Length of underline
+\setlength{\committeenameunderlinelength}{5cm}
+
+\begin{document}
+\pagenumbering{Roman}
+\makefrontcover
+\makeapproval
+
+%agreement page
+\cleardoublepage
+\makeagreement
+
+\cleardoublepage
+\pagenumbering{roman}
+
+\keyword{SNU, dmlab, thesis}
+\begin{abstract}
+In this dissertation, ...
+
+\end{abstract}
+
+
+% % 여기 수정할 것
+\tableofcontents
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\contentsname}
+
+\listoftables
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}
+
+\listoffigures
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+introduction...
+
+\section{Section A}
+\section{Section B}
+
+
+\chapter{Literature Review}
+Main contents.
+This book \cite{bishop2006} is ...
+
+\section{Classification Algorithms}
+
+\subsubsection{LDA}
+\subsubsection{DT}
+
+\begin{table}[!hbp]
+\caption{table title}
+\end{table}
+
+\chapter{Chapter}
+
+contents
+
+\begin{figure}[!hbp]
+\caption{figure title}
+\end{figure}
+
+\subsection{subsection title}
+subsection
+
+
+
+\chapter{Conculsion}
+Conculsion.
+
+
+\begin{bibpage}
+	\bibliographystyle{ieeetr}
+	\bibliography{ref}
+\end{bibpage}
+
+
+
+\keywordalt{서울대학교, 데이터마이닝연구실, 박사학위논문}
+\begin{abstractalt}
+한글 요약 내용이 여기에 들어갑니다.
+\end{abstractalt}
+
+\acknowledgement
+Thanks!
+
+\end{document}
+
