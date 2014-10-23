@@ -9,7 +9,7 @@
 % twoside : 양면 인쇄용
 % phd : 박사
 % openright : 챕터가 홀수쪽에서 시작
-\documentclass[oneside,phd]{snuthesis_utf8}
+\documentclass[twoside,phd]{snuthesis_utf8}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 목차 양식을 변경하는 코드
@@ -99,23 +99,21 @@
 In this dissertation, ...
 
 \end{abstract}
-
+\cleardoublepage
 
 % % 여기 수정할 것
 \tableofcontents
-\cleardoublepage
 \addcontentsline{toc}{chapter}{\contentsname}
+\cleardoublepage
 
 \listoftables
-\cleardoublepage
 \addcontentsline{toc}{chapter}{\listtablename}
+\cleardoublepage
 
 \listoffigures
-\cleardoublepage
 \addcontentsline{toc}{chapter}{\listfigurename}
-
-
 \cleardoublepage
+
 \pagenumbering{arabic}
 
 \chapter{Introduction}
