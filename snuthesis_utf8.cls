@@ -318,10 +318,10 @@
 		\linespread{1.3}\selectfont
 		\fontsize{14pt}{14pt}\selectfont
 		\if@snu@ms
-			\@snu@koen{공학석사학위논문}%
-			{M.S. THESIS}\\
+			\@snu@koen{공학석사 학위논문}%
+			{공학석사 학위논문}\\
 		\else
-			\@snu@koen{공학박사학위논문}%
+			\@snu@koen{공학박사 학위논문}%
 			{공학박사 학위논문}\\
 		\fi
 		\vspace{2cm}\nointerlineskip
@@ -339,7 +339,7 @@
 		서울대학교 대학원\\
 		\vspace{5mm}\nointerlineskip
 		\fontsize{14pt}{14pt}\selectfont
-		산업공학과 데이터마이닝 전공\\
+		산업공학과\\
 		\vspace{5mm}\nointerlineskip
 
 
