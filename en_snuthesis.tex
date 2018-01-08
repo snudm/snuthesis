@@ -1,0 +1,269 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 서울대학교 데이터마이닝연구실 구성원들의 박사학위논문 작성을 위해 아래 저작자의 자료를 일부 수정하였습니다.
+%% Author: zeta709 (zeta709@gmail.com) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 2018-01-08 산업공학과 데이터마이닝 전공을 산업공학과로 수정하고, 영어 석사 논문 작성 시 편리한 작업을 위한 추가 수정 및 팁 작성 by 문지형 jhmoon@dm.snu.ac.kr
+
+\RequirePackage{fix-cm} 
+% oneside : 단면 인쇄용
+% twoside : 양면 인쇄용
+% ms: 석
+% phd : 박사
+% openright : 챕터가 홀수쪽에서 시작
+\documentclass[twoside,ms]{snuthesis_utf8}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 목차 양식을 변경하는 코드
+%% subfigure (subfig) package 사용 여부에 따라
+%% tocloft의 옵션을 다르게 지정해야 한다.
+%\usepackage[titles,subfigure]{tocloft} % when you use subfigure package
+\usepackage[titles]{tocloft} % when you don't use subfigure package
+\makeatletter % don't delete me
+\renewcommand\cftchappresnum{Chapter~}
+\renewcommand\cftfigpresnum{Figure~}
+\renewcommand\cfttabpresnum{Table~}
+
+
+\usepackage[pdftex,bookmarks=true]{hyperref}
+\usepackage{tabularx}
+\usepackage{array,multirow,graphicx,rotating,booktabs}
+\usepackage{caption}  %subfigure
+\usepackage{subcaption}  %subfigure
+\usepackage[round, sort, numbers]{natbib} %reference style
+\newcommand\mycite[1]{[\citenum{#1}]}
+\newcommand\myauthor[1]{\citeauthor{#1} (\citeyear{#1})}
+\usepackage{pbox} % line break in table
+\usepackage{adjustbox}
+\usepackage{footnote}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{float} % position here
+\usepackage{lscape} % for landscape page
+\usepackage{kotex}
+
+\makeatother % don't delete me
+\newlength{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftchappresnum\cftchapaftersnum}
+\addtolength{\cftchapnumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\mytmplen}
+\settowidth{\mytmplen}{\bfseries\cfttabpresnum\cfttabaftersnum}
+\addtolength{\cfttabnumwidth}{\mytmplen}
+%% 목차 양식을 변경하는 코드 끝
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 다른 패키지 로드
+%% http://faq.ktug.or.kr/faq/pdflatex%B0%FAlatex%B5%BF%BD%C3%BB%E7%BF%EB
+%% 필요에 따라 직접 수정 필요
+\ifpdf
+	% \input glyphtounicode\pdfgentounicode=1 %type 1 font사용시
+	%\usepackage[pdftex,unicode]{hyperref} % delete me
+	%\usepackage[pdftex]{graphicx}
+	%\usepackage[pdftex,svgnames]{xcolor}
+\else
+	%\usepackage[dvipdfmx,unicode]{hyperref} % delete me%
+	%\usepackage[dvipdfmx]{graphicx}
+	%\usepackage[dvipdfmx,svgnames]{xcolor}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%% \title : 22pt로 나오는 큰 제목
+%% \title* : 16pt로 나오는 작은 제목
+\title{Dissertation Title Dissertation Title \\abcdefghijk}
+\title*{석사학위논문 한글제목}
+
+\titlen{Dissertation Title Dissertation Title abcdefghijk}
+
+\author{Gildong~Hong}
+\author*{홍길동} % Same as \author.
+\authorn{홍~길~동}
+\phonenumber{010-1111-1111}
+\studentnumber{2016-11111}
+\advisor{Nada~Ga}
+\advisor*{조성준}
+\advisorn{조 성 준}
+\graddate{2018~년~~2~월}
+\submissiondate{2018~년~~2~월}
+\submissiondaten{2018~년~~2~월~~1~일}
+\approvaldate{2017~년~~12~월}
+
+\committeemembers%
+{교 수 님}%
+{조 성 준}%
+{교 수 님}%
+{교 수 님}%
+{교 수 님} %
+
+%% Length of underline
+\setlength{\committeenameunderlinelength}{5cm}
+
+\begin{document}
+\pagenumbering{Roman}
+\makefrontcover
+\makeapproval
+
+%agreement page
+%\cleardoublepage
+%\makeagreement
+
+\cleardoublepage
+\pagenumbering{roman}
+
+\keyword{SNU, dmlab, thesis}
+\begin{abstract}
+In this dissertation, ...
+
+\end{abstract}
+\cleardoublepage
+
+% % 여기 수정할 것
+\tableofcontents
+\addcontentsline{toc}{chapter}{\contentsname}
+\cleardoublepage
+
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+\cleardoublepage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+\cleardoublepage
+
+\pagenumbering{arabic}
+
+\chapter{Introduction}
+
+This guide is made for graduates who are unfamiliar with graduate thesis latex templates.
+I added some tips to reduce working time and use latex more conveniently.
+
+\clearpage
+\chapter{Tips}
+\section{Image Insertion}
+It is convenient to create a folder named 'figure' for image insertion.
+Once the tex file is compiled, a lot of dirty files will be created, therefore, it is quite messy without specific image folder.
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{figure/div.png}  % scale보다는 문서크기를 보고 width의 비율로 정하는 편이 크기 조정할 때 직관적이다. 예시 그림의 경우에는 원래 가로 여백이 있었다.
+	\caption{Data, Insight, Value}
+	\label{fig:div}
+\end{figure}
+
+
+\clearpage
+\section{Table insertion}
+\subsection{Basic}
+\url{https://www.tablesgenerator.com/latex_tables} creates the most basic template!
+
+\clearpage
+\subsection{Advanced}
+The most annoying part of latex work is table insertion.
+Size modification, highlights, and annotation in table are very annoying compared to Hancom, so many people turn to it.
+However, latex will feel much easier if you learn only the following introductions for graduation thesis.
+
+\textit{adjustbox}: It adjusts the overall size of the table. If not, a table may be generated  beyond the document scope.
+
+\textit{columncolor}: It shades the entire column to emphasize the results of my model.
+
+\textit{footnotemark and footnotetext}: Inside the table, the $\setminus$footnote does not work. 
+For this reason, footnotemark and footnotetext are used.
+Note that the page on which the annotation exists is not always the same (...) as the table.
+When the footnotemark is used several times inside the table, the annotation number becomes strange.
+In this case, use \textit{addtocounter}.
+\newline
+\newline
+If you need more than this, let's do googling.
+
+\clearpage
+\begin{table}[h]
+\centering
+	\caption{Average error rate on bAbI story-based tasks with 10k training samples}
+	\label{table:babi_result}
+\begin{adjustbox}{max width=0.95\textwidth}
+\begin{tabular}{l|llllllll>{\columncolor[gray]{0.8}}l}
+\hline
+Task                                 & \multicolumn{1}{c}{MemNN} & \multicolumn{1}{c}{MemN2N} & \multicolumn{1}{c}{GMemN2N} & \multicolumn{1}{c}{DMN} & \multicolumn{1}{c}{DMN+} & \multicolumn{1}{c}{DNC} & \multicolumn{1}{c}{EntNet\footnotemark}& \multicolumn{1}{c}{RN\footnotemark} & \multicolumn{1}{c}{RMN} \\ \hline
+1: Single Supporting Fact            & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0} & \textbf{0.0}                     & \textbf{0.0}                      & \textbf{0.0}                     & \textbf{0.1}                        & \textbf{0.0}                    & \textbf{0.0}                     \\
+2: Two Supporting Facts              & \textbf{0.0}                       & \textbf{0.3}                        & \textbf{0.0}                         & \textbf{1.8}                     & \textbf{0.3}                      & \textbf{0.4}                     & \textbf{2.8} & 8.3                    & \textbf{0.5}                     \\
+3: Three Supporting Facts            & \textbf{0.0}                       & 9.3                        & \textbf{4.5                        } & \textbf{4.8}                     & \textbf{1.1}                      & \textbf{1.8}                     & 10.6                       & 17.1                  & 14.7                     \\
+4: Two Argument Relations            & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0} & \textbf{0.0}                     & \textbf{0.0}                    & \textbf{0.0}                    & \textbf{0.0} & \textbf{0.0}                    & \textbf{0.0}                   \\
+5: Three Argument Relations          & \textbf{2.0 }                      & \textbf{0.6}                        & \textbf{0.2 } & \textbf{0.7}                     & \textbf{0.5}                     &\textbf{0.8}                     &\textbf{0.4}                       & \textbf{0.7}                   & \textbf{0.4}                     \\
+6: Yes/No Questions                  & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0} & \textbf{0.0}                     & \textbf{0.0}                      & \textbf{0.0}                     & \textbf{0.3}                       & \textbf{0.0}                    & \textbf{0.0}                     \\
+7: Counting                          & 15.0                      & \textbf{3.7}                       & \textbf{1.8}                         & \textbf{3.1}                     & \textbf{2.4}                      & \textbf{0.6}                    & \textbf{0.8}                        &\textbf{0.4}                &\textbf{0.5}                    \\
+8: Lists/Sets                        & 9.0                       & \textbf{0.8}                        & \textbf{0.3}                         & \textbf{3.5}                     & \textbf{0.0}                     & \textbf{0.3}                     &\textbf{0.1} & \textbf{0.3}                   & \textbf{0.3}                     \\
+9: Simple Negation                   & \textbf{0.0}                       & \textbf{0.8}                        & \textbf{0.0}                         & \textbf{0.0 } & \textbf{0.0}                      & \textbf{0.2}                     &\textbf{ 0.0 }                       & \textbf{0.0}                   &\textbf{0.0}                    \\
+10: Indefinite Knowledge             & \textbf{2.0}                       & \textbf{2.4}                      & \textbf{0.2} &\textbf{2.5}                     & \textbf{0.0}                      & \textbf{0.2}                     & \textbf{0.0}                        & \textbf{0.0}                    & \textbf{0.0}                   \\
+11: Basic Coreference                & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0}                         & \textbf{0.1}                    & \textbf{0.0}                      & \textbf{0.0}                     & \textbf{0.0}                        & \textbf{0.4}                  & \textbf{0.5}                    \\
+12: Conjunction                      & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0}                         & \textbf{0.0}                     &\textbf{0.0}                      &\textbf{0.0}                     & \textbf{0.0}                        & \textbf{0.0}                   & \textbf{0.0}                     \\
+13: Compound Coreference             & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0} & \textbf{0.2}                     & \textbf{0.0}                      & \textbf{0.1} & \textbf{0.0}                        & \textbf{0.0}                 & \textbf{0.0}                     \\
+14: Time Reasoning                   & \textbf{1.0}                       &\textbf{0.0}                        & \textbf{0.0}                         &\textbf {0.0}                     & \textbf{0.0}                      & \textbf{0.4} & \textbf{3.6}                      &\textbf{0.0}                    & \textbf{0.0}                    \\
+15: Basic Deduction                  & \textbf{0.0}                       & \textbf{0.0}                        &\textbf{0.0}                         & \textbf{0.0}                    &\textbf{0.0}                    & \textbf{0.0}                     &\textbf{0.0}                        & \textbf{0.0}                   &\textbf{0.0}                     \\
+16: Basic Induction                  &\textbf{0.0}                       & \textbf{0.4}                        & \textbf{0.0}                         & \textbf{0.6}                   & 45.3                     & 33.1                    & 52.1                       & \textbf{4.9}                   & \textbf{0.9}                    \\
+17: Positional Reasoning             & 35.0                        & 40.7                       & 27.8                        & 40.4                    & \textbf{4.2}                      & 12.0                    & 11.7                       & \textbf{1.6}                    & \textbf{0.3} \\
+18: Size Reasoning                   & \textbf{5.0}                      & 6.7                        & 8.5                         & \textbf{4.7}                     & \textbf{2.1}                     & \textbf{0.8}                     & \textbf{2.1}                        & \textbf{2.1}                    & \textbf{2.3}                     \\
+19: Path Finding                     & 64.0                      & 66.5                       & 31.0                        & 65.5                    & \textbf{0.0}                      & \textbf{3.9}                     & 63.0                       & \textbf{3.2}                    & \textbf{2.9}                     \\
+20: Agent's Motivations              & \textbf{0.0}                       & \textbf{0.0}                        & \textbf{0.0} & \textbf{0.0}                    &\textbf{ 0.0}                      & \textbf{0.0}                     & \textbf{0.0}                        &\textbf{0.0}                    & \textbf{0.0}                     \\ \hline
+Mean error (\%)                      & 6.7                       & 6.6                        & 3.7                         & 6.4                     & 2.8                      & 2.7                     & 7.4                        & 2.0                    & \textbf{1.2}                     \\
+Failed tasks (err. \textgreater  5\%) & 4                         & 4                          & 3                           & 2                       & \textbf{1}                        & 2                       & 4                          & 2                       & \textbf{1}                       \\ \hline
+\end{tabular}
+\end{adjustbox}
+\end{table}
+
+\addtocounter{footnote}{-1}
+\footnotetext{For a fair comparison, we report EntNet's result~\mycite{henaff2016tracking} which was jointly trained on all tasks. It was written in the appendix of the paper.}
+\addtocounter{footnote}{+1}
+\footnotetext{Our implementation. The result is different from what \myauthor{santoro2017simple} mentioned, which is caused by the initialization~\mycite{santoro2017simple}.}
+
+
+\chapter{Reference insertion}
+\section{Insert reference right before the period mark}
+Do not use conventional $\sim\setminus$cite\{\}.
+
+ex: blah blah~\cite{bishop2006}.
+\newline
+\newline
+Because of ( ), I defined `mycite' to appear reference number with [ ].
+
+ex: blah blah~\mycite{bishop2006}.
+
+
+\clearpage
+\section{Insert reference to the author name}
+Sometimes you need to put a reference to the author name. 
+To do this, I defined `myauthor'.
+
+ex: \myauthor{bishop2006} said blah blah~\mycite{bishop2006}.
+
+
+
+\begin{bibpage}
+	\bibliographystyle{plainnat}
+	\bibliography{ref}
+\end{bibpage}
+
+
+\appendix
+\chapter{Appendix title 1}
+The appendix does not appear in the table of contents.
+In this case, open a .toc file (or click the table of contents page with holding ctrl) and add a line below the bibliography.
+
+\contentsline {chapter}{Bibliography}{8}{section*.9} % 현재 Bibliography
+\contentsline {chapter}{Appendix}{9}{section*.10} % {9}는 페이지 번호이므로 알아서 맞추자
+\contentsline {section}{\numberline {A}Appendix title 1}{9}{section.Alph0.1}
+\contentsline {section}{\numberline {B}Appendix title 2}{10}{section.Alph0.2}
+
+\chapter{Appendix title 2}
+
+\keywordalt{서울대학교, 데이터마이닝연구실, 석사학위논문}
+\begin{abstractalt}
+한글 요약 내용이 여기에 들어갑니다.
+\end{abstractalt}
+
+\acknowledgement
+Thanks!
+
+\end{document}
+
